@@ -1,0 +1,3 @@
+create_dogs_job:
+  cron: '0 0 * * *'
+  class: 'CreateDogsWorker'
