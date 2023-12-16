@@ -10,9 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_15_104325) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_15_113342) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "breeders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "dogs", force: :cascade do |t|
     t.string "name"
@@ -22,6 +27,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_15_104325) do
     t.date "date_of_birth"
     t.boolean "rescue", default: false
     t.boolean "breeder", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "dog_owner_type", null: false
+    t.bigint "dog_owner_id", null: false
+    t.index ["dog_owner_type", "dog_owner_id"], name: "index_dogs_on_dog_owner"
+  end
+
+  create_table "rescues", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
